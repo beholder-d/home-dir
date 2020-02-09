@@ -1,5 +1,5 @@
-# in ~/.zshrc las line
-# source ~/.zsh-myrc
+# in ~/.zshrc or ~/.bashrc last line add
+# source ~/.my-shell-rc
 if [[ $ZSH == *"oh-my-zsh"* ]]; then  
     PROMPT='%n$fg_no_bold[cyan]@$reset_color%/$(git_prompt_info)> '
 else
