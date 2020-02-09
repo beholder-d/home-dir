@@ -6,16 +6,18 @@ else
     PROMPT='%n@%/> '
 fi
 
-GITADDR=$(which git)
-GIT () {
+export GIT_PAGER='less -X -F'
+
+MGITADDR=$(which git)
+MGIT () {
     extra=''
     arg="$@"
     if [ "$arg" = 'log' ]; then
         shift
         extra='log --pretty=oneline --graph'
     fi
-    eval "${GITADDR} ${extra} ${@}"
+    eval "${MGITADDR} ${extra} "$(printf ' %q' "$@")
 }
 
-alias git=GIT
+alias git=MGIT
 setopt complete_aliases
