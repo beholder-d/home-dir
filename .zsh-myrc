@@ -6,14 +6,16 @@ else
     PROMPT='%n@%/> '
 fi
 
-W_GIT=`which git`
-GITPATCH () {
+GITADDR=$(which git)
+GIT () {
     extra=''
-    arg1=$1
-    if [ "$arg1" = 'log' ]; then
+    arg="$@"
+    if [ "$arg" = 'log' ]; then
         shift
-        extra='log --one-line --graph'
+        extra='log --pretty=oneline --graph'
     fi
-    ${"$W_GIT $extra $@"}
+    eval "${GITADDR} ${extra} ${@}"
 }
-#alias git='GITPATCH'
+
+alias git=GIT
+setopt complete_aliases
