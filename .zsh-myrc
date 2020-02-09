@@ -1,0 +1,19 @@
+# in ~/.zshrc las line
+# source ~/.zsh-myrc
+if [[ $ZSH == *"oh-my-zsh"* ]]; then  
+    PROMPT='%n$fg_no_bold[cyan]@$reset_color%/$(git_prompt_info)> '
+else
+    PROMPT='%n@%/> '
+fi
+
+W_GIT=`which git`
+GITPATCH () {
+    extra=''
+    arg1=$1
+    if [ "$arg1" = 'log' ]; then
+        shift
+        extra='log --one-line --graph'
+    fi
+    ${"$W_GIT $extra $@"}
+}
+#alias git='GITPATCH'
