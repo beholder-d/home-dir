@@ -1,11 +1,16 @@
 # in ~/.zshrc or ~/.bashrc last line add
 # source ~/.my-shell-rc
-if [[ $ZSH == *"oh-my-zsh"* ]]; then  
-    PROMPT='%n$fg_no_bold[cyan]@$reset_color%/$(git_prompt_info)> '
-else
-    PROMPT='%n@%/> '
-fi
+PROMPT='%n@%/> '
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+EXTRAS=~/.my-zsh-extras
+#if [[ -n "$ZSH_VERSION" && -f "$EXTRAS/extras.zsh" ]]; then
+    source $EXTRAS/extras.zsh
+#fi
+
+#GIT 
 export GIT_PAGER='less -X -F'
 
 MGITADDR=$(which git)
@@ -21,3 +26,6 @@ MGIT () {
 
 alias git=MGIT
 setopt complete_aliases
+
+#ALIAS
+alias ll="ls -la"
